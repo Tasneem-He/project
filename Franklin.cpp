@@ -11,7 +11,7 @@
 extern bool collide;
 QTimer timer;
 
-rect::rect(int boardData[12][12])
+rect::rect(int boardData[12][12], bullet * b[4], Enemy *e[2], powerpellet *p[2], home *h[1], lifestuff *f[4], win *w[1], lose *l[1])
 {
        QPixmap image("C:\\Users\\Tasnem\\Downloads\\CS2-Project\\images\\cat.png");
        image = image.scaledToWidth(60);
@@ -26,6 +26,7 @@ rect::rect(int boardData[12][12])
            this->h=h;
            this->w=w;
            this->l=l ;
+       this->p=p;
 
 
        row = 6;
@@ -107,11 +108,27 @@ void rect:: killenemy()
         return ;
     }
 }
-float  rect:: getdistance(enemy*e)
+float  rect:: getdistance(Enemy*e)
 {
-    int x = e->row ;
-    int y = e->column ;
+    int x = e->rows ;
+    int y = e->columns ;
     return abs((this->row-x)+(this->column-y)) ;
+}
+
+void rect ::hearts()
+{
+    if (life==2)
+    {
+    scene()->removeItem(h[0]);
+    }
+    if (life==1)
+    {
+    scene()->removeItem(h[1]);
+    }
+    if (life==0)
+    {
+        scene()->removeItem(h[2]);
+    }
 }
 void rect::keyPressEvent(QKeyEvent* event)
 {
@@ -169,7 +186,7 @@ void rect::keyPressEvent(QKeyEvent* event)
                holdpistol();
                connect(&timer, SIGNAL(timeout()),this, SLOT (gobacktonormal()));
                timer.start(1000);
-
+                killenemy();
                // add code to take half a life from enemy and check if enemy life is 0 to remove him
 
 
@@ -181,8 +198,29 @@ void rect::keyPressEvent(QKeyEvent* event)
        for (int i =0, n=colliding_items_enemy.size(); i<n; i++){
            if (typeid(*(colliding_items_enemy[i]))==typeid(Enemy)){
 
-               if (angry == false)
-               life--;
+               if(angry)
+                           {
+                               continue;
+                           }
+                           else if (life!=0)
+                           {
+                              life -- ;
+                           }
+
+                       if (life<=0)
+                       {
+                           scene()->addItem(l[0]);
+                           l[0]->setPos(50 + -2 * 50, 50 + -2 * 50);
+                       }
+                      }
+                   }
+
+                   if (count==2)
+                   {
+                       scene()->addItem(h[0]);
+                       h[0]->setPos(50 + 7 * 50, 50 + 7 * 50);
+                   }
+
                //add function to remove one heart
 
                //changeHeart(0, 8);
@@ -191,8 +229,8 @@ void rect::keyPressEvent(QKeyEvent* event)
                setPos(50 + column * 50, 50 + row * 50);
 
 
-           }
-       }
+
+
 
        QList<QGraphicsItem*> items4 = collidingItems();
            for (int i = 0; i < items4.size(); i++)

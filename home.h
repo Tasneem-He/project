@@ -7,7 +7,7 @@
 class home : public QGraphicsPixmapItem
 {
 public:
-    home(int row, int col);
+    home();
 };
 
 #endif // HOME_H

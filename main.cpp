@@ -11,12 +11,14 @@
 #include "bullet.h"
 #include "timer.h"
 #include "enemy.h"
-#include "game.h"
+#include "home.h"
+#include "win.h"
+#include "lose.h"
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 
-bool collide=false;
+
 
 
 int main(int argc, char *argv[])
@@ -194,31 +196,38 @@ int main(int argc, char *argv[])
                scene->addItem(&boardItems[i][j]);
            }
 
-    class::rect r(boardData);
-    scene->addItem(&r);
-    r.setFlag(QGraphicsPixmapItem::ItemIsFocusable);
-    r.setFocus();
+
 
     lifestuff heart1(0,8), heart2(0,9), heart3(0,10);
     scene->addItem(&heart1);
     scene->addItem(&heart2);
     scene->addItem(&heart3);
+    lifestuff *f [3]={&heart1,&heart2,&heart3};
+
 
     powerpellet one(4,1), two(8,10);
     scene->addItem(&one);
     scene->addItem(&two);
+     powerpellet*p[2]={&one, &two};
 
     class::bullet bullet1(1,1), bullet2(1,10), bullet3(10,1), bullet4(10,10);
     scene->addItem(&bullet1);
     scene->addItem(&bullet2);
     scene->addItem(&bullet3);
     scene->addItem(&bullet4);
-
-    Enemy e1(boardData,10,10);
-    Enemy e2(boardData, 10, 4);
+    bullet*b  [4] ={&bullet2,&bullet2,&bullet3,&bullet4};
+    lose l1;
+    lose *l[1] = {&l1};
+    Enemy e1(boardData,10,10,l);
+    Enemy e2(boardData, 10, 4, l);
     scene->addItem(&e1);
     scene->addItem(&e2);
+    Enemy *e [2] = {&e1,&e2};
+    home h1;
+    home *h[1]={&h1};
 
+    win w1;
+    win *w[1]={&w1};
 
 
 
@@ -229,13 +238,10 @@ int main(int argc, char *argv[])
 
     //if (ame.d(e1, r))
        // e1.life--;
-
-if (e1.life ==0 && e2.life ==0){
-    QPixmap image("C:\\Users\\Tasnem\\Downloads\\CS2-Project\\images\\catangry.png");
-    image = image.scaledToWidth(60);
-    image = image.scaledToHeight(60);
-    //setPixmap(image);
-}
+    class::rect r(boardData, b, e, p, h, f,w, l);
+    scene->addItem(&r);
+    r.setFlag(QGraphicsPixmapItem::ItemIsFocusable);
+    r.setFocus();
 
 
     view->setScene(scene);

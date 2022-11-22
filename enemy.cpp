@@ -7,7 +7,7 @@
 #include <QDebug>
 #include "bullet.h"
 #include "lose.h"
-Enemy::Enemy(int boardData[12][12], int rows, int columns){
+Enemy::Enemy(int boardData[12][12], int r, int c,lose *l[1]){
 
     // Set Image of the enemy
     QPixmap image("C:\\Users\\Tasnem\\Downloads\\CS2-Project\\images\\frame-1.png");
@@ -15,7 +15,10 @@ Enemy::Enemy(int boardData[12][12], int rows, int columns){
         image = image.scaledToHeight(30);
         setPixmap(image);
   // Set Position
+        rows = r;
+        columns =c;
         setPos(50 + columns * 50, 50 + rows * 50);
+
         this->l=l ;
  // Set data Array
     for (int i = 0; i < 12; i++)
@@ -73,9 +76,7 @@ void Enemy::move(){
                            scene()->addItem(l[0]);
                            l[0]->setPos(50 + -2 * 50, 50 + -2 * 50);
                        }
-if (data[rows - 1][columns] >= 0 && pos().y() > 100 )
-            setPos(x(),y()-12);
- setPos(x()+20,y());
+
 
             data[12][12];
 

@@ -13,7 +13,7 @@ public:
     int lifes=3;
     lifestuff(int row, int col);
     void changeHeart(int row, int col);
-
+int count = 0;
 public slots:
 };
 

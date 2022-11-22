@@ -5,15 +5,12 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QGraphicsTextItem>
-#include "Franklin.h"
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include "lifestuff.h"
-#include "Franklin.h"
 #include "bullet.h"
 //#include "timer.h"
-#include "enemy.h"
 #include <QDebug>
 #include <QTimer>
 

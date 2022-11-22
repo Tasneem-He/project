@@ -14,7 +14,6 @@ SOURCES += \
     Franklin.cpp \
     bullet.cpp \
     enemy.cpp \
-    game.cpp \
     home.cpp \
     lifestuff.cpp \
     lose.cpp \
@@ -27,7 +26,6 @@ HEADERS += \
     Franklin.h \
     bullet.h \
     enemy.h \
-    game.h \
     home.h \
     lifestuff.h \
     lose.h \

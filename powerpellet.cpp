@@ -3,11 +3,8 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include "lifestuff.h"
-#include "Franklin.h"
-#include "powerpellet.h"
 #include "bullet.h"
 //#include "timer.h"
-#include "enemy.h"
 #include <QDebug>
 #include <QTimer>
 

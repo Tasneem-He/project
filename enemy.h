@@ -11,13 +11,14 @@
 class Enemy: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Enemy(int boardData[12][12], int rows, int columns);
+    Enemy(int boardData[12][12], int rows, int columns, lose *l[1]);
     int life=2;
     bool dead = false;
     lose **l;
     int lives =2;
-private:
     int rows, columns;
+private:
+
     int data[12][12];
 
 public slots:
