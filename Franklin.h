@@ -36,6 +36,7 @@ public slots:
     void holdpistol();
     void gobacktonormal();
     void angrymeow();
+    float getdistance(Enemy*e);
 
 };
 

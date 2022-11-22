@@ -15,11 +15,11 @@ public:
     int life=2;
     bool dead = false;
     lose **l;
-
+    int lives =2;
 private:
     int rows, columns;
     int data[12][12];
-    int lives =2;
+
 public slots:
     void move();
 };

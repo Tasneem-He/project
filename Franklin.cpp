@@ -54,6 +54,7 @@ void rect::gobacktonormal()
     image = image.scaledToWidth(60);
     image = image.scaledToHeight(60);
     setPixmap(image);
+    angry = false;
     timer.stop();
 
 }
@@ -76,8 +77,42 @@ void rect::angrymeow()
     timer.stop();
 
 }
+void rect:: killenemy()
+{
+    float d1=10000 ;
+    float d2= 10000 ;
 
+   if (!e[0]->dead)
+   {
+    d1= getdistance(e[0]) ;
+   }
 
+   if (!e[1]->dead)
+   {
+    d2= getdistance(e[1]) ;
+   }
+
+    bool di = d2<d1 ;
+
+    if (e[di]->lives ==1)
+    {
+        e[di]->dead = true;
+        count++;
+        scene()->removeItem(e[di]);
+        return;
+    }
+    else
+    {
+        e[di]->lives --;
+        return ;
+    }
+}
+float  rect:: getdistance(enemy*e)
+{
+    int x = e->row ;
+    int y = e->column ;
+    return abs((this->row-x)+(this->column-y)) ;
+}
 void rect::keyPressEvent(QKeyEvent* event)
 {
 
@@ -116,7 +151,7 @@ void rect::keyPressEvent(QKeyEvent* event)
                QTimer *powertime=new QTimer;
                connect (powertime, SIGNAL(timeout()), this, SLOT(gobacktonormal()));
                powertime->start(10000);
-               angry = false;
+
                //add code to display a 10 sec timer
 
 
