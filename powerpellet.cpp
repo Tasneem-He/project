@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <QTimer>
 
+
 powerpellet::powerpellet(int row, int col)
 {
     QPixmap image ("C:\\Users\\Tasnem\\Downloads\\CS2-Project\\images\\fish.png");

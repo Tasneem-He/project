@@ -5,7 +5,8 @@
 #include <stdlib.h>
 #include <QTimer>
 #include <QDebug>
-
+#include "bullet.h"
+#include "lose.h"
 Enemy::Enemy(int boardData[12][12], int rows, int columns){
 
     // Set Image of the enemy
@@ -15,6 +16,7 @@ Enemy::Enemy(int boardData[12][12], int rows, int columns){
         setPixmap(image);
   // Set Position
         setPos(50 + columns * 50, 50 + rows * 50);
+        this->l=l ;
  // Set data Array
     for (int i = 0; i < 12; i++)
            for (int j = 0; j < 12; j++)
@@ -57,6 +59,20 @@ void Enemy::move(){
     QList<QGraphicsItem *> colliding_items_enemy = collidingItems();
     for (int i =0, n=colliding_items_enemy.size(); i<n; i++){
         if (typeid(*(colliding_items_enemy[i]))==typeid(rect)){
+            rect * franklin = dynamic_cast<rect*>(colliding_items_enemy[i]);
+                       if(franklin->angry)
+                       {
+                           continue;
+                       }
+                        else
+                       {
+                         franklin->life -- ;
+                        }
+                       if (franklin->life<= 0)
+                       {
+                           scene()->addItem(l[0]);
+                           l[0]->setPos(50 + -2 * 50, 50 + -2 * 50);
+                       }
 if (data[rows - 1][columns] >= 0 && pos().y() > 100 )
             setPos(x(),y()-12);
  setPos(x()+20,y());
@@ -72,6 +88,6 @@ if (data[rows - 1][columns] >= 0 && pos().y() > 100 )
     }
 
 
-
 }
+
 

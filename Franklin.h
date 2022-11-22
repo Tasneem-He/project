@@ -6,6 +6,10 @@
 #include <QGraphicsScene>
 #include "lifestuff.h"
 #include "enemy.h"
+#include "bullet.h"
+#include "win.h"
+#include "home.h"
+#include "lifestuff.h"
 
 
 
@@ -19,6 +23,13 @@ public:
     rect(int boardData[12][12]);
     int life=3;
     bool angry=false;
+    void killenemy();
+    Enemy **e;
+       bullet **b;
+       home **h;
+       lifestuff **f ;
+       win **w;
+       lose **l;
 
 public slots:
     void keyPressEvent(QKeyEvent* event);

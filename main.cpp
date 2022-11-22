@@ -12,15 +12,17 @@
 #include "timer.h"
 #include "enemy.h"
 #include "game.h"
+#include <QKeyEvent>
+#include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
 
 bool collide=false;
-game game;
+
 
 int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
-
 
     //create a scene
     QGraphicsScene *scene=new QGraphicsScene;
@@ -212,8 +214,8 @@ int main(int argc, char *argv[])
     scene->addItem(&bullet3);
     scene->addItem(&bullet4);
 
-    Enemy e1(boardData,1,10);
-    Enemy e2(boardData, 6, 4);
+    Enemy e1(boardData,10,10);
+    Enemy e2(boardData, 10, 4);
     scene->addItem(&e1);
     scene->addItem(&e2);
 
@@ -225,16 +227,23 @@ int main(int argc, char *argv[])
 
 
 
+    //if (ame.d(e1, r))
+       // e1.life--;
 
-
-
+if (e1.life ==0 && e2.life ==0){
+    QPixmap image("C:\\Users\\Tasnem\\Downloads\\CS2-Project\\images\\catangry.png");
+    image = image.scaledToWidth(60);
+    image = image.scaledToHeight(60);
+    //setPixmap(image);
+}
 
 
     view->setScene(scene);
     view->show();
 
+    //return a.exec();
     return a.exec();
-    if (game.d(e1, r))
-        e1.life--;
+
+
 }
 

@@ -17,11 +17,15 @@ rect::rect(int boardData[12][12])
        image = image.scaledToWidth(60);
        image = image.scaledToHeight(60);
        setPixmap(image);
-
        //"A:\\Development\\C++ - CS 2\\CS2-Project\\CS2-Project\\images\\Tweety.png"
 
 
-
+       this->e=e;
+           this->b = b ;
+           this->f=f;
+           this->h=h;
+           this->w=w;
+           this->l=l ;
 
 
        row = 6;
@@ -130,9 +134,7 @@ void rect::keyPressEvent(QKeyEvent* event)
                holdpistol();
                connect(&timer, SIGNAL(timeout()),this, SLOT (gobacktonormal()));
                timer.start(1000);
-               //enemy->life--;
-              // if (enemy->life==0)
-                 //  scene()->removeItem(enemy);
+
                // add code to take half a life from enemy and check if enemy life is 0 to remove him
 
 
@@ -157,5 +159,16 @@ void rect::keyPressEvent(QKeyEvent* event)
            }
        }
 
+       QList<QGraphicsItem*> items4 = collidingItems();
+           for (int i = 0; i < items4.size(); i++)
+           {
+               if (typeid(*items4[i]) == typeid(home))
+               {
+                   scene()->addItem(w[0]);
+                   w[0]->setPos(50 + -2 * 50, 50 + -2 * 50);
+                   scene()->removeItem(this);
+               }
 
+
+}
 }

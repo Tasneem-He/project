@@ -22,6 +22,7 @@ public:
 
 
 
+
     float d(Enemy x, class::rect y);
 };
 

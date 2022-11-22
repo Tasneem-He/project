@@ -15,19 +15,25 @@ SOURCES += \
     bullet.cpp \
     enemy.cpp \
     game.cpp \
+    home.cpp \
     lifestuff.cpp \
+    lose.cpp \
     main.cpp \
     powerpellet.cpp \
-    timer.cpp
+    timer.cpp \
+    win.cpp
 
 HEADERS += \
     Franklin.h \
     bullet.h \
     enemy.h \
     game.h \
+    home.h \
     lifestuff.h \
+    lose.h \
     powerpellet.h \
-    timer.h
+    timer.h \
+    win.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
